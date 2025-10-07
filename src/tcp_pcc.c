@@ -32,8 +32,8 @@
  */
 #define PCC_INTERVALS 4
 
-/* Probing changes rate by 5% up and down of current rate. */
-#define PCC_PROBING_EPS 5
+/* Probing changes rate by 10% up and down of current rate. */
+#define PCC_PROBING_EPS 10
 #define PCC_PROBING_EPS_PART 100
 
 #define PCC_SCALE 1000 /* scale for fractions, utilities, gradients, ... */
@@ -46,7 +46,7 @@
 #define PCC_ALPHA 100
 
 #define PCC_GRAD_STEP_SIZE 25 /* defaults step size for gradient ascent */
-#define PCC_MAX_SWING_BUFFER 2 /* number of RTTs to dampen gradient ascent */
+#define PCC_MAX_SWING_BUFFER 1 /* number of RTTs to dampen gradient ascent */
 
 #define PCC_LAT_INFL_FILTER 30 /* latency inflation below 3% is ignored */
 
@@ -55,7 +55,7 @@
 
 #define PCC_MIN_CHANGE_BOUND 100 /* first rate change is at most 10% of rate */
 #define PCC_CHANGE_BOUND_STEP 70 /* consecutive rate changes can go up by 7% */
-#define PCC_AMP_MIN 2 /* starting amplifier for gradient ascent step size */
+#define PCC_AMP_MIN 4 /* starting amplifier for gradient ascent step size */
 
 #define USE_PROBING
 
@@ -565,7 +565,7 @@ static void pcc_decide_slow_start(struct sock *sk, struct pcc_data *pcc)
 		pcc->last_rate = pcc->rate;
 		extra_rate = pcc->intervals[0].delivered *
 				 tcp_sk(sk)->mss_cache;
-		extra_rate = min(extra_rate, pcc->rate / 2);
+		extra_rate = umin(extra_rate, pcc->rate / 2);
 
 		// njay -> nogah: I don't really understand why we limited increase to
 		// the number of bytes we know were delivered. This just seems to cause
