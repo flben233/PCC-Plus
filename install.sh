@@ -35,15 +35,17 @@ install_pcc() {
     echo "=== 编译 tcp_pcc 模块 ==="
     apt install git
     git clone https://github.com/flben233/PCC-Plus.git -b vivace
-    # 假设源码在当前目录 tcp_pcc/
-    SRC_PATH="$PWD/PCC-Plus/src"
+    SRC_PATH="/tmp/PCC-Plus/src"
     cd "$SRC_PATH"
     if [ ! -f "$SRC_PATH/$MODULE_NAME.ko" ]; then
         make
     fi
     echo "=== 加载模块并设置为默认算法 ==="
     if ! lsmod | grep -q "^$MODULE_NAME"; then
-        insmod "$MODULE_NAME.ko"
+        cp "$MODULE_NAME.ko" /lib/modules/$(uname -r)/kernel/drivers/net/
+        depmod -a
+        echo "$MODULE_NAME" | tee /etc/modules-load.d/tcp_pcc.conf
+        modprobe "$MODULE_NAME"
     fi
     available=$(cat /proc/sys/net/ipv4/tcp_available_congestion_control)
     if ! echo "$available" | grep -qw "pcc"; then
