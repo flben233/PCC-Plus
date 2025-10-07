@@ -32,8 +32,8 @@
  */
 #define PCC_INTERVALS 4
 
-/* Probing changes rate by 10% up and down of current rate. */
-#define PCC_PROBING_EPS 10
+/* Probing changes rate by 7% up and down of current rate. */
+#define PCC_PROBING_EPS 7
 #define PCC_PROBING_EPS_PART 100
 
 #define PCC_SCALE 1000 /* scale for fractions, utilities, gradients, ... */
