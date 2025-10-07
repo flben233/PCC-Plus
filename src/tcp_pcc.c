@@ -46,16 +46,16 @@
 #define PCC_ALPHA 100
 
 #define PCC_GRAD_STEP_SIZE 25 /* defaults step size for gradient ascent */
-#define PCC_MAX_SWING_BUFFER 1 /* number of RTTs to dampen gradient ascent */
+#define PCC_MAX_SWING_BUFFER 5 /* number of RTTs to dampen gradient ascent */
 
-#define PCC_LAT_INFL_FILTER 30 /* latency inflation below 3% is ignored */
+#define PCC_LAT_INFL_FILTER 100 /* latency inflation below 10% is ignored */
 
 /* Rates must differ by at least 2% or gradients are very noisy. */
 #define PCC_MIN_RATE_DIFF_RATIO_FOR_GRAD 20
 
 #define PCC_MIN_CHANGE_BOUND 100 /* first rate change is at most 10% of rate */
 #define PCC_CHANGE_BOUND_STEP 70 /* consecutive rate changes can go up by 7% */
-#define PCC_AMP_MIN 4 /* starting amplifier for gradient ascent step size */
+#define PCC_AMP_MIN 2 /* starting amplifier for gradient ascent step size */
 
 #define USE_PROBING
 
