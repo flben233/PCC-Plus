@@ -34,8 +34,8 @@ install_headers_and_source() {
 install_pcc() {
     echo "=== 编译 tcp_pcc 模块 ==="
     apt install git
-    git clone -b vivace https://github.com/flben233/PCC-Plus.git /tmp/PCC-Plus
     SRC_PATH="/tmp/PCC-Plus"
+    git clone -b vivace https://github.com/flben233/PCC-Plus.git "$SRC_PATH"
     cd "$SRC_PATH/src"
     if [ ! -f "$SRC_PATH/$MODULE_NAME.ko" ]; then
         make
