@@ -48,7 +48,7 @@
 #define PCC_GRAD_STEP_SIZE 25 /* defaults step size for gradient ascent */
 #define PCC_MAX_SWING_BUFFER 1 /* number of RTTs to dampen gradient ascent */
 
-#define PCC_LAT_INFL_FILTER 50 /* latency inflation below 5% is ignored */
+#define PCC_LAT_INFL_FILTER 20 /* latency inflation below 2% is ignored */
 
 /* Rates must differ by at least 2% or gradients are very noisy. */
 #define PCC_MIN_RATE_DIFF_RATIO_FOR_GRAD 20
