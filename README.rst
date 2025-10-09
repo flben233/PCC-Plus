@@ -4,7 +4,7 @@ PCC
 
 **P**\ erformance-oriented **C**\ ongestion **C**\ ontrol.
 
-The version adjust some parameters to adapt to bad network.
+The version adjust some parameters to adapt to bad network and uses the utility function from Proteus-P.
 
 Origin source is 
 `here <https://github.com/PCCproject/PCC-Kernel/tree/vivace>`_.
