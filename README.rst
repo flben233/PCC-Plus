@@ -4,6 +4,8 @@ PCC
 
 **P**\ erformance-oriented **C**\ ongestion **C**\ ontrol.
 
+The version adjust some parameters to adapt to bad network.
+
 Origin source is 
 `here <https://github.com/PCCproject/PCC-Kernel/tree/vivace>`_.
 
