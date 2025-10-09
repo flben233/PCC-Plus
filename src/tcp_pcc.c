@@ -42,7 +42,7 @@
 #define PCC_RATE_MIN_PACKETS_PER_RTT 2
 #define PCC_INVALID_INTERVAL -1
 #define PCC_IGNORE_PACKETS 10
-#define PCC_INTERVAL_MIN_PACKETS 30
+#define PCC_INTERVAL_MIN_PACKETS 20
 #define PCC_ALPHA 100
 
 #define PCC_GRAD_STEP_SIZE 25 /* defaults step size for gradient ascent */
