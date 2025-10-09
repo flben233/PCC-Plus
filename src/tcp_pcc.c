@@ -311,7 +311,7 @@ static void pcc_calc_utility_vivace(struct pcc_data *pcc, struct pcc_interval *i
     if (pcc->start_mode && loss_ratio < 100)
         loss_ratio = 0;
 
-	util = /* int_sqrt((u64)rate)*/ rate - (rate * (900 * lat_infl + 11 * loss_ratio)) / PCC_SCALE;
+	util = /* int_sqrt((u64)rate)*/ rate - (rate * (900 * lat_infl + 5 * loss_ratio)) / PCC_SCALE;
 
 	printk(KERN_INFO
 		"%d ucalc: rate %lld sent %u delv %lld lost %lld lat (%lld->%lld) util %lld rate %lld thpt %lld\n",
