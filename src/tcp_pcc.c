@@ -54,7 +54,7 @@
 #define PCC_MIN_RATE_DIFF_RATIO_FOR_GRAD 20
 
 #define PCC_MIN_CHANGE_BOUND 100 /* first rate change is at most 10% of rate */
-#define PCC_CHANGE_BOUND_STEP 70 /* consecutive rate changes can go up by 7% */
+#define PCC_CHANGE_BOUND_STEP 100 /* consecutive rate changes can go up by 7% */
 #define PCC_AMP_MIN 1 /* starting amplifier for gradient ascent step size */
 
 #define USE_PROBING
