@@ -147,7 +147,7 @@ static void pcc_set_cwnd(struct sock *sk)
 	cwnd /= tp->mss_cache;
 	
 		cwnd /= USEC_PER_SEC;
-		cwnd *= 2;
+		cwnd *= 4;
 
 	cwnd = max(4ULL, cwnd);
 		cwnd = min((u32)cwnd, tp->snd_cwnd_clamp); /* apply cap */
