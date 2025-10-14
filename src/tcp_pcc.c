@@ -54,7 +54,7 @@
 #define PCC_MIN_RATE_DIFF_RATIO_FOR_GRAD 20
 
 #define PCC_MIN_CHANGE_BOUND 100 /* first rate change is at most 10% of rate */
-#define PCC_CHANGE_BOUND_STEP 100 /* consecutive rate changes can go up by 7% */
+#define PCC_CHANGE_BOUND_STEP 70 /* consecutive rate changes can go up by 7% */
 #define PCC_AMP_MIN 1 /* starting amplifier for gradient ascent step size */
 
 #define USE_PROBING
@@ -147,7 +147,7 @@ static void pcc_set_cwnd(struct sock *sk)
 	cwnd /= tp->mss_cache;
 	
 		cwnd /= USEC_PER_SEC;
-		cwnd *= 3;
+		cwnd *= 2;
 
 	cwnd = max(4ULL, cwnd);
 		cwnd = min((u32)cwnd, tp->snd_cwnd_clamp); /* apply cap */
@@ -311,11 +311,7 @@ static void pcc_calc_utility_vivace(struct pcc_data *pcc, struct pcc_interval *i
     if (pcc->start_mode && loss_ratio < 100)
         loss_ratio = 0;
 
-	// util = /* int_sqrt((u64)rate)*/ rate - (rate * (900 * umax(0, lat_infl) + 5 * loss_ratio)) / PCC_SCALE;
-
-	s64 reward = (rate + throughput) >> 1;
-
-	util = reward - (rate * (900 * umax(0, lat_infl) + 5 * loss_ratio)) / PCC_SCALE;
+	util = /* int_sqrt((u64)rate)*/ rate - (rate * (900 * umax(0, lat_infl) + 5 * loss_ratio)) / PCC_SCALE;
 
 	printk(KERN_INFO
 		"%d ucalc: rate %lld sent %u delv %lld lost %lld lat (%lld->%lld) util %lld rate %lld thpt %lld\n",
@@ -866,5 +862,4 @@ MODULE_AUTHOR("Nathan Jay <njay2@illinois.edu>");
 MODULE_AUTHOR("Nogah Frankel <nogah.frankel@gmail.com>");
 MODULE_LICENSE("Dual BSD/GPL");
 MODULE_DESCRIPTION("TCP PCC (Performance-oriented Congestion Control)");
-
 
